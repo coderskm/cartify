@@ -22,7 +22,7 @@ const Cart = () => {
   const { cartItems, totalPrice, finalPrice } = useSelector((store) => store.cart);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [discountValue, setDiscountValue] = useState("");
-  //const [finalPrice, setFinalPrice] = useState(0);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const selectDiscountType = useRef(null);
@@ -39,10 +39,6 @@ const Cart = () => {
     dispatch(calculateTotalPrice());
   }, [cartItems]);
 
-  // useEffect(() => {
-  //   setFinalPrice(totalPrice);
-  // }, []);
-
   if (cartItems.length == 0) {
     return (
       <div className="empty-cart-style">
@@ -56,6 +52,10 @@ const Cart = () => {
 
   const applyDiscount = () => {
     if (selectDiscountType.current.value == "fixed") {
+      if (discountValue == totalPrice) {
+        alert("discount value should never be equal to total price");
+        return;
+      }
       if (discountValue > totalPrice) {
         alert("discount value should be less than total price");
         setDiscountValue("");
@@ -63,13 +63,15 @@ const Cart = () => {
       }
       let priceAfterDiscount = totalPrice - discountValue;
       dispatch(totalMoneyToBePaid(priceAfterDiscount));
-      dispatch(setDiscountVal(Number(discountValue)));
+      dispatch(setDiscountVal(discountValue));
       dispatch(setDiscountType(selectDiscountType.current.value));
-
       setDiscountValue("");
-
       setButtonDisabled(true);
     } else if (selectDiscountType.current.value == "percentage") {
+      if (discountValue == 100) {
+        alert("percentage discount value can never be 100");
+        return;
+      }
       if (discountValue < 0 || discountValue > 100) {
         alert("invalid percentage discount value");
         setDiscountValue("");
@@ -77,11 +79,9 @@ const Cart = () => {
       }
       let priceAfterDiscount = totalPrice - totalPrice * (discountValue / 100);
       dispatch(totalMoneyToBePaid(priceAfterDiscount));
-      dispatch(setDiscountVal(Number(discountValue)));
+      dispatch(setDiscountVal(discountValue));
       dispatch(setDiscountType(selectDiscountType.current.value));
-
       setDiscountValue("");
-
       setButtonDisabled(true);
     } else {
       alert("select a discount type");
@@ -123,7 +123,8 @@ const Cart = () => {
         </button>
       </div>
       <div className="price-style">
-        total price :- <span className="green-text">₹ {finalPrice==0?totalPrice.toFixed(3):finalPrice.toFixed(3)}</span>
+        total price :-{" "}
+        <span className="green-text">₹ {finalPrice == 0 ? totalPrice.toFixed(3) : finalPrice.toFixed(3)}</span>
       </div>
       <div className="btns-container">
         <button className="danger-btn" onClick={() => dispatch(clearCart())}>
