@@ -1,10 +1,19 @@
 import "./Products.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ProductItem from "../components/ProductItem";
+
+/* 
+1. product page component inside which all products are rendered.
+2. here user can see all products available where each product's name, price and image can be seen
+3. user can search for particular product by typing name in input search bar also they can sort the products based on their price
+4. user can navigate to cart page on click of button to see which items they have added to cart.
+*/
 
 const Products = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [name, setName] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -55,6 +64,13 @@ const Products = () => {
           <ProductItem key={item.id} {...item} />
         ))}
       </div>
+      {filteredProductList.length > 0 && (
+        <div className="btns-container">
+          <button className="cart-btn-style" onClick={() => navigate("/cart")}>
+            GO TO CART
+          </button>
+        </div>
+      )}
     </>
   );
 };

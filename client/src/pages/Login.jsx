@@ -4,22 +4,31 @@ import { Link, useNavigate } from "react-router-dom";
 import { setCurrentUser, guestUserLogin } from "../redux/user/userSlice";
 import { useDispatch } from "react-redux";
 
+/* 
+1. simple login page which asks for user's username and password.
+2. if username not found or password incorrect then popup message with error is shown.
+3. on successfull login user navigates to home page with welcome message.
+4. additionally visitor can register themselves by clicking on red text "REGISTER" 
+*/
+
 const Login = () => {
   const [formData, setFormData] = useState({});
- 
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const handleGuestUserLogin = () => {
     dispatch(guestUserLogin());
     navigate("/");
   };
+
   const handleChange = (e) => {
     const { value, name } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     try {
       const res = await fetch("/api/auth/login", {
         method: "POST",
@@ -28,18 +37,20 @@ const Login = () => {
         },
         body: JSON.stringify(formData),
       });
+
       const data = await res.json();
-       if (data.success == false) {
-         alert(data.message);
-       } else {
-         dispatch(setCurrentUser(data));
-         navigate("/");
-       }
-    
+
+      if (data.success == false) {
+        alert(data.message);
+      } else {
+        dispatch(setCurrentUser(data));
+        navigate("/");
+      }
+
     } catch (error) {
-       alert(error.message)
+      alert(error.message);
     }
-  }; 
+  };
 
   return (
     <>

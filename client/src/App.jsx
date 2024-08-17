@@ -17,7 +17,7 @@ const App = () => {
       {isLoggedIn && <Navbar />}
       <Routes>
         <Route exact path="/" element={<Home />} />
-        <Route path="*" element={<NotFound/>} />
+        <Route path="*" element={<NotFound />} />
         {!isLoggedIn && <Route exact path="/register" element={<Register />} />}
         {!isLoggedIn && <Route exact path="/login" element={<Login />} />}
         <Route element={<PrivateRoute />}>
@@ -28,6 +28,6 @@ const App = () => {
       </Routes>
     </>
   );
-}
+};
 
 export default App;

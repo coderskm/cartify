@@ -1,28 +1,30 @@
-.home-heading{
-    text-align: center;
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin: 20px;
-
-}
-.userparentcontainer{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.login-user-text{
-    text-align: center;
-font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-font-size:larger;
-margin: 20px;
-}
-.username-text{
-    color: red;
+.home-heading {
+  text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin: 20px;
 }
 
-.shop-btn-style{
-    margin-top: 20px;
-    background-color: black;
+.userparentcontainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-user-text {
+  text-align: center;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: larger;
+  margin: 20px;
+}
+
+.username-text {
+  color: red;
+}
+
+.shop-btn-style {
+  margin-top: 20px;
+  background-color: black;
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -31,27 +33,27 @@ margin: 20px;
   font-size: 16px;
 }
 
-.shop-btn-style:hover{
-    background-color: blue;
+.shop-btn-style:hover {
+  background-color: blue;
 }
 
-.home-btns{
-display: flex;
-justify-content: center;
-align-items: center;
+.home-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.home-btns button{
-    padding: 10px;
-    font-size: large;
-    margin: 10px;
-    cursor: pointer;
-    background-color: black;
-    color: aliceblue;
+.home-btns button {
+  padding: 10px;
+  font-size: large;
+  margin: 10px;
+  cursor: pointer;
+  background-color: black;
+  color: aliceblue;
 }
 
-.home-btns button:hover{
-    cursor: pointer;
-    background-color: blue;
-    color: aliceblue;
+.home-btns button:hover {
+  cursor: pointer;
+  background-color: blue;
+  color: aliceblue;
 }

@@ -4,7 +4,9 @@ import userReducer from "./user/userSlice";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
-const rootReducer = combineReducers({ cart: cartReducer, user:userReducer });
+/* use of redux persist so that on re-render state data persists and does not get lost until user logs out */
+
+const rootReducer = combineReducers({ cart: cartReducer, user: userReducer });
 
 const persistConfig = {
   key: "root",
@@ -22,10 +24,3 @@ export const store = configureStore({
 });
 
 export const persistor = persistStore(store);
-
-
-
-
-
-
-

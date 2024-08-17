@@ -1,16 +1,28 @@
 import "./Cart.css";
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../components/CartItem";
-import { calculateTotalPrice, totalMoneyToBePaid, clearCart } from "../redux/cart/cartSlice";
+import {
+  calculateTotalPrice,
+  totalMoneyToBePaid,
+  setDiscountVal,
+  setDiscountType,
+  clearCart,
+} from "../redux/cart/cartSlice";
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+/*
+1. cart page component inside which product added to cart are rendered.
+2. here user can see total amount they need to pay
+3. also discount value can be added in two formats :- fixed discount and percentage discount
+4. user can navigate to checkout page on click of button to see which items they have ordered.
+*/
+
 const Cart = () => {
-  const { cartItems, totalPrice } = useSelector((store) => store.cart);
+  const { cartItems, totalPrice, finalPrice } = useSelector((store) => store.cart);
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const [discountValue, setDiscountValue] = useState("");
-  const [finalPrice, setFinalPrice] = useState(0);
-
+  //const [finalPrice, setFinalPrice] = useState(0);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const selectDiscountType = useRef(null);
@@ -24,13 +36,12 @@ const Cart = () => {
   };
 
   useEffect(() => {
-    //storeCartInfoForUser();
     dispatch(calculateTotalPrice());
   }, [cartItems]);
 
-  useEffect(() => {
-    setFinalPrice(totalPrice);
-  }, [totalPrice]);
+  // useEffect(() => {
+  //   setFinalPrice(totalPrice);
+  // }, []);
 
   if (cartItems.length == 0) {
     return (
@@ -51,8 +62,12 @@ const Cart = () => {
         return;
       }
       let priceAfterDiscount = totalPrice - discountValue;
-      setFinalPrice(priceAfterDiscount);
+      dispatch(totalMoneyToBePaid(priceAfterDiscount));
+      dispatch(setDiscountVal(Number(discountValue)));
+      dispatch(setDiscountType(selectDiscountType.current.value));
+
       setDiscountValue("");
+
       setButtonDisabled(true);
     } else if (selectDiscountType.current.value == "percentage") {
       if (discountValue < 0 || discountValue > 100) {
@@ -61,8 +76,12 @@ const Cart = () => {
         return;
       }
       let priceAfterDiscount = totalPrice - totalPrice * (discountValue / 100);
-      setFinalPrice(priceAfterDiscount);
+      dispatch(totalMoneyToBePaid(priceAfterDiscount));
+      dispatch(setDiscountVal(Number(discountValue)));
+      dispatch(setDiscountType(selectDiscountType.current.value));
+
       setDiscountValue("");
+
       setButtonDisabled(true);
     } else {
       alert("select a discount type");
@@ -71,13 +90,12 @@ const Cart = () => {
   };
 
   const handleCheckout = () => {
-    dispatch(totalMoneyToBePaid(finalPrice));
     navigate("/checkout");
   };
 
   return (
     <>
-      <h2 className="heading-text">Total Products:- {cartItems.length}</h2>
+      <h1 className="heading-text">Total Products:- {cartItems.length}</h1>
       <div className="parent-grid">
         {cartItems.map((item) => (
           <CartItem key={item.id} {...item} />
@@ -105,15 +123,15 @@ const Cart = () => {
         </button>
       </div>
       <div className="price-style">
-        total price :- <span className="green-text">₹ {finalPrice.toFixed(3)}</span>
+        total price :- <span className="green-text">₹ {finalPrice==0?totalPrice.toFixed(3):finalPrice.toFixed(3)}</span>
       </div>
       <div className="btns-container">
         <button className="danger-btn" onClick={() => dispatch(clearCart())}>
-          CLEAR CART
+          clear cart
         </button>
 
         <button className="ok-btn" onClick={handleCheckout}>
-          CHECKOUT
+          checkout
         </button>
       </div>
     </>

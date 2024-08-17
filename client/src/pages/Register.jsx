@@ -1,6 +1,18 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+/* 
+1. simple register page which asks for user's fullname, email, username and password.
+2. on successfull registration a popup with message "user registered successfully" is displayed and user navigates to login page.
+3. additionally visitor can login by clicking on red text "LOGIN"
+
+Rules to successfully register :-
+1. email and username should be unique.
+2. password should be more than 5 characters long
+If not followed above rules than regsistration won't be successfull
+
+*/
+
 const Register = () => {
   const [formData, setFormData] = useState({});
   
@@ -13,6 +25,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     try {
       const res = await fetch("/api/auth/register", {
         method: "POST",
@@ -21,13 +34,16 @@ const Register = () => {
         },
         body: JSON.stringify(formData),
       });
+
       const data = await res.json();
      
       if (data.success == false) {
         alert(data.message);
       } else {
+        alert(data);
         navigate("/login");
       }
+      
     } catch (error) {
       alert(error.message);
     }

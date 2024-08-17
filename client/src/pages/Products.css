@@ -1,18 +1,33 @@
-.filter-container{
+.filter-container {
+  display: flex;
+  justify-content: center;
+}
+
+.product-not-found {
+  text-align: center;
+  margin-top: 50px;
+}
+
+@media (max-width: 480px) {
+  .filter-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+  }
 }
 
-.product-not-found{
-    text-align: center;
-    margin-top: 50px;
+.cart-btn-style {
+  padding: 10px;
+  font-size: large;
+  margin: 10px;
+  cursor: pointer;
+  background-color: black;
+  color: aliceblue;
 }
 
-@media(max-width:480px){
-    .filter-container{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
+.cart-btn-style:hover {
+  cursor: pointer;
+  background-color: blue;
+  color: aliceblue;
 }

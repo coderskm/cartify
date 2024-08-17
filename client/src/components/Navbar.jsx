@@ -17,6 +17,7 @@ const Navbar = () => {
   const handleLogout = async () => {
     if (currentUser == "guest") {
       dispatch(guestUserLogout());
+      dispatch(clearCart());
       navigate("/");
       return;
     }
@@ -24,7 +25,7 @@ const Navbar = () => {
     const data = await res.json();
     dispatch(setLogoutUser());
     dispatch(clearCart());
-    console.log(data);
+    alert(data);
   };
 
   return (
