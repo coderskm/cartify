@@ -1,0 +1,39 @@
+.cart-btn{
+  margin-bottom: 10px;
+}
+
+.increase-btn{
+padding: 8px;
+border: none;
+font-size: 12px;
+border-radius: 6px;
+cursor: pointer;
+background-color: green;
+color: aliceblue;
+font-weight: 900;
+}
+
+.item-amount{
+padding: 10px;
+font-weight: bolder;
+font-size: large;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.decrease-btn{
+padding: 8px;
+border: none;
+font-size: 12px;
+border-radius: 6px;
+cursor: pointer;
+background-color: red;
+color: aliceblue;
+font-weight: 900;
+}
+
+.increase-btn:active, .decrease-btn:active{
+    background-color: black;
+    color: white;
+}
+
+
