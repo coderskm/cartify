@@ -13,10 +13,10 @@
    ```bash
    cd profile.fyi-cart
    
-2. **In the root folder and client folder (run command on separate terminals):**:
+2. **In the root folder and client folder (run command on separate terminals):**
    ```bash
    npm install
 
-3. **In the root folder and client folder (run command on separate terminals):**:
+3. **In the root folder and client folder (run command on separate terminals):**
    ```bash
    npm run dev
