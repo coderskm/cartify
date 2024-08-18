@@ -52,7 +52,7 @@ const Checkout = () => {
         <Link to={"/cart"}>
           <button className="ok-btn">go back to cart</button>
         </Link>
-        <button className="danger-btn">pay now</button>
+        <button className="danger-btn" onClick={()=>alert('more features and bug improvements in process..')}>pay now</button>
       </div>
     </div>
   );
