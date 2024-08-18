@@ -8,12 +8,15 @@
 1. **Clone the Repository**:
    ```bash
    git clone https://github.com/coderskm/profile.fyi-cart.git
-cd profile.fyi-cart
 
-2. **In the root folder and client folder:**:
+2. **Navigate to project's root folder**
+   ```bash
+   cd profile.fyi-cart
+   
+2. **In the root folder and client folder (run command on separate terminals):**:
    ```bash
    npm install
 
-3. **In the root folder and client folder:**:
+3. **In the root folder and client folder (run command on separate terminals):**:
    ```bash
    npm run dev
