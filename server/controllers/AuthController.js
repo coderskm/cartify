@@ -3,6 +3,10 @@ const jwt = require("jsonwebtoken");
 const userModel = require("../models/UserModel");
 const { errorHandler } = require("../utils/error");
 
+/* 
+1. api to register user, login user and logout user with basic validations
+*/
+
 const register = async (req, res, next) => {
   const { fullname, email, username, password } = req.body;
    const validUserCheck2 = await userModel.findOne({ email });

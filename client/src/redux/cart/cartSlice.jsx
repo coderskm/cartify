@@ -9,7 +9,7 @@ const initialState = {
   totalPrice: 0,
   finalPrice: 0,
   discountVal: "",
-  discountType: "",
+  discountType: "no-discount",
 };
 
 const cartSlice = new createSlice({
@@ -52,7 +52,7 @@ const cartSlice = new createSlice({
       state.totalPrice = 0;
       state.finalPrice = 0;
       state.discountVal = "";
-      state.discountType = "";
+      state.discountType = "no-discount";
     },
   },
 });

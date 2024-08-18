@@ -10,6 +10,11 @@ import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import PrivateRoute from "./components/PrivateRoute";
 
+/* 
+1. parent component of react application.
+2. all page routes are initialized here.
+*/
+
 const App = () => {
   const { isLoggedIn } = useSelector((store) => store.user);
   return (

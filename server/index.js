@@ -4,6 +4,10 @@ const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const authRouter = require("./routes/AuthRouter");
 
+/* 
+1. main entry point of backend service app.
+*/
+
 const path = require('path');
 dotenv.config();
 

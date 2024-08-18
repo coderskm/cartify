@@ -1,18 +1,16 @@
-
 import "./Checkout.css";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 /* 
 1. simply renders list of items user have added to cart which they need to order.
-2. shows detail about an items quantity and total amount of each quantity along ith total amount of all rpoducts they need to pay.
-3. additionally we can see whether total amount is discounted by how many amounts or not discounted at all
+2. shows detail about an item's quantity and total amount of each quantity.
+3. additionally we can see whether total amount is discounted by how much or not discounted at all
 */
 
 const Checkout = () => {
-  const { cartItems, finalPrice, discountVal, discountType } = useSelector((store) => store.cart);
-  console.log(discountType)
-  console.log(discountVal)
+  const { cartItems, totalPrice, finalPrice, discountVal, discountType } = useSelector((store) => store.cart);
+
   return (
     <div>
       <h1 className="heading-text">Order Summary</h1>
@@ -36,13 +34,18 @@ const Checkout = () => {
       <div className="price-style">
         You need to pay :-{" "}
         <span className="green-text">
-          ₹{finalPrice.toFixed(3)} with{" "}
-          {discountType == "fixed" ? (
-            <span className="red-text"> ₹{discountVal} </span>
+          ₹{finalPrice == 0 ? totalPrice.toFixed(3) : finalPrice.toFixed(3)}&nbsp;
+          {discountType == "no-discount" ? (
+            ""
+          ) : discountType == "fixed" ? (
+            <>
+              with <span className="red-text"> ₹{discountVal} </span> off
+            </>
           ) : (
-            <span className="red-text">{discountVal}% </span>
+            <>
+              with <span className="red-text">{discountVal}% </span> off
+            </>
           )}
-          off
         </span>
       </div>
       <div className="btns-container">
