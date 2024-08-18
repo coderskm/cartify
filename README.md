@@ -17,9 +17,3 @@ cd profile.fyi-cart
 3. **In the root folder and client folder:**:
    ```bash
    npm run dev
-
-
-
-
-
-
