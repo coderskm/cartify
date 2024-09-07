@@ -14,7 +14,7 @@ const Home = () => {
 
   return (
     <div>
-      <h1 className="home-heading">Welcome to profile.fyi-cart </h1>
+      <h1 className="home-heading">Welcome to Cartify </h1>
       {isLoggedIn ? (
         currentUser == "guest" ? (
           <div className="userparentcontainer">
