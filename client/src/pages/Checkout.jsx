@@ -39,11 +39,11 @@ const Checkout = () => {
             ""
           ) : discountType == "fixed" ? (
             <>
-              with <span className="red-text"> ₹{discountVal} </span> off
+              ( after <span className="red-text"> ₹{discountVal} </span> off )
             </>
           ) : (
             <>
-              with <span className="red-text">{discountVal}% </span> off
+              ( after <span className="red-text">{discountVal}% </span> off )
             </>
           )}
         </span>
@@ -52,7 +52,9 @@ const Checkout = () => {
         <Link to={"/cart"}>
           <button className="ok-btn">go back to cart</button>
         </Link>
-        <button className="danger-btn" onClick={()=>alert('more features and bug improvements in process..')}>pay now</button>
+        <button className="danger-btn" onClick={() => alert("more features and bug improvements in process..")}>
+          pay now
+        </button>
       </div>
     </div>
   );
