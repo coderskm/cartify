@@ -31,7 +31,7 @@ const Navbar = () => {
   return (
     <nav className="">
       <Link to={"/"} className="title">
-        profile.fyi-cart
+        Cartify
       </Link>
       <div className="menu" onClick={() => setMenuopen(!menuopen)}>
         {menuopen ? "X" : <AiOutlineMenu />}
